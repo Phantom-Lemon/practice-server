@@ -8,7 +8,10 @@
 
 
 <body>
-    <div class="text">서버에서 보낸 메세지 :</div>
+    <h1>채팅</h1>
+    <input id="input">
+    <button id="button">보내기</button>
+
     <div class="chat-box">
 
     </div>
@@ -19,17 +22,50 @@
 
 </body>
 <script>
-    fetch("http://localhost:3000")
+    const $input = document.querySelector("#input");
+    const $button = document.querySelector("#button");
+    const $chatBox = document.querySelector('.chat-box');
 
-    .then(res => res.json())
-    .then(messagesArray => {
-        const $chatBox = document.querySelector('.chat-box');
-        messagesArray.forEach(element => {
-            const $message = document.createElement('p');
-            $message.textContent = element.name + " : " + element.message;
-            $chatBox.appendChild($message);
+    function loadMessage(){
+        $chatBox.innerHTML = '';
+
+        fetch("http://localhost:3000")
+        
+        .then(messageArrayRes => messageArrayRes.json())
+        .then(messagesArray => {
+            messagesArray.forEach(element => {
+                const $message = document.createElement('p');
+                $message.textContent = element.name + " : " + element.text;
+                $chatBox.appendChild($message);
+            });
         });
-    });
+    }
+
+    function sendMessage(){
+        let message = {
+            name : '동건',
+            text : $input.value
+        };
+        fetch("http://localhost:3000"
+            ,
+            {
+                method : "POST",
+                headers : {
+                    "Content-Type":"application/json"
+                },
+                body : JSON.stringify(message)
+            }
+        )
+        .then(()=>{
+            $input.value = '';
+            loadMessage();
+        });
+    }
+    
+    $button.onclick = sendMessage;
+
+    loadMessage();
+
 </script>
 
 </html>
