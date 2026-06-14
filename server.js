@@ -9,13 +9,19 @@ const server = http.createServer((req, res) => {
         "application/json; charset=utf-8"
     );
 
-    const data = {
-        name : '동건',
-        message : '하이'
-    };
+    const messagesArray = [
+        {
+            name : '동건',
+            message : '하이'
+        },
+        {
+            name : '예린',
+            message : '안뇽'
+        }
+    ];
 
     res.end(
-        JSON.stringify(data)
+        JSON.stringify(messagesArray)
     );
     // const indexPath = path.join(__dirname, 'index.html');
 

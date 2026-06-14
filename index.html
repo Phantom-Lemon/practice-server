@@ -9,7 +9,9 @@
 
 <body>
     <div class="text">서버에서 보낸 메세지 :</div>
-    <div id="result"></div>
+    <div class="chat-box">
+
+    </div>
 
     <p>
         Node.js가 HTML 파일을 보내고 있습니다.
@@ -20,9 +22,13 @@
     fetch("http://localhost:3000")
 
     .then(res => res.json())
-    .then(data => {
-        const $result = document.querySelector('#result');
-        $result.textContent = data.message;
+    .then(messagesArray => {
+        const $chatBox = document.querySelector('.chat-box');
+        messagesArray.forEach(element => {
+            const $message = document.createElement('p');
+            $message.textContent = element.name + " : " + element.message;
+            $chatBox.appendChild($message);
+        });
     });
 </script>
 
