@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Node 서버</title>
+</head>
+
+
+<body>
+    <div class="text">서버에서 보낸 메세지 :</div>
+    <div id="result"></div>
+
+    <p>
+        Node.js가 HTML 파일을 보내고 있습니다.
+    </p>
+
+</body>
+<script>
+    fetch("http://localhost:3000")
+
+    .then(res => res.json())
+    .then(data => {
+        const $result = document.querySelector('#result');
+        $result.textContent = data.message;
+    });
+</script>
+
+</html>
