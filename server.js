@@ -1,46 +1,15 @@
-const http = require('http');
+const http = require("http");
 
-let messages = [
-    {
-        name : '동건',
-        text : '하이 예링'
-    }
-];
-
-const server = http.createServer((req, res)=>{
-
-    if(req.method === 'GET'){
-
-
-        res.setHeader(
-            "Content-Type",
-            "application/JSON; charset=utf-8"
-        );
-
-        res.end(
-            JSON.stringify(messages)
-        );
-
-    }
-
-    if(req.method === 'POST'){
-
-        let body = '';
-        req.on('data', (chunck)=>{
-            body += chunck;
-        })
-        req.on('end', ()=>{
-            messages.push(JSON.parse(body));
-
-            res.end("저장 완료");
-        })
-        
-
-    }
-
+const server = http.createServer((req,res)=>{
+    
+    res.end("안녕하세요 서버입니다.");
 
 });
 
-server.listen(3000, ()=>{
-    console.log("서버가 실행중입니다");
+const PORT = process.env.PORT || 3000;
+
+server.listen(PORT, ()=>{
+
+    console.log("서버 켜짐");
+
 });
