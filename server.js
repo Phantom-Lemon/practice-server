@@ -34,6 +34,16 @@ const server = http.createServer((req,res)=>{
         res.end("ㅋㅋ");
     }
 
+    else if(req.url === "/time"){
+        res.setHeader(
+            "Content-Type",
+            "text/plain; charset=utf-8"
+        );
+        res.end(
+            new Date().toString()
+        );
+    }
+
     
 
 });

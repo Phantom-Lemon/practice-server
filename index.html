@@ -10,10 +10,12 @@
         Node.js가 HTML을 보내고 있습니다.
     </p>
     <button id="button">서버에 요청</button>
+    <button id="button2">시간 요청</button>
     <p id="result"></p>
 </body>
 <script>
     const $btn = document.querySelector("#button");
+    const $btn2 = document.querySelector("#button2");
     const $result = document.querySelector("#result");
 
     const url = "https://practice-server-adky.onrender.com/"
@@ -25,7 +27,13 @@
             $result.textContent = text;
         });
     });
-
+    $btn2.addEventListener("click", ()=>{
+        fetch(url + "time")
+        .then(response => response.text())
+        .then(text =>{
+            $result.textContent = text;
+        });
+    });
 
 </script>
 </html>
