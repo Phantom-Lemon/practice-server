@@ -32,7 +32,7 @@ const server = http.createServer((req,res)=>{
             let body = "";
 
             req.on("data",chunk=>{
-                body += chuck;
+                body += chunk;
             })
 
             req.on("end",()=>{
@@ -42,7 +42,7 @@ const server = http.createServer((req,res)=>{
                 );
                 res.end("데이터 보내준거 받앗습니당");
             });
-            
+
         }
 
         if(req.method === "GET"){
