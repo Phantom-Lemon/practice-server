@@ -9,5 +9,21 @@
     <p>
         Node.js가 HTML을 보내고 있습니다.
     </p>
+    <button id="button">서버에 요청</button>
+    <p id="result"></p>
 </body>
+<script>
+    const $btn = document.querySelector("#button");
+    const $result = document.querySelector("#result");
+
+    $btn.addEventListener("click", ()=>{
+        fetch("https://practice-server-adky.onrender.com/")
+        .then(response => response.text())
+        .then(text =>{
+            $result.textContent = data;
+        });
+    });
+
+    
+</script>
 </html>
