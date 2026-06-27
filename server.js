@@ -40,7 +40,7 @@ const server = http.createServer((req,res)=>{
                     "Content-Type",
                     "text/plain; charset=utf-8"
                 );
-                res.end("데이터 보내준거 받앗습니당");
+                res.end(`${body}라고 데이터 보내준거 받앗습니당^^`);
             });
 
         }
