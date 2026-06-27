@@ -3,8 +3,8 @@ const fs = require("fs");
 
 const server = http.createServer((req,res)=>{
     
-    
-    fs.readFile("index.html", (err,data)=>{
+    if(req.url = "/"){
+        fs.readFile("index.html", (err,data)=>{
 
         if(err){
 
@@ -23,7 +23,14 @@ const server = http.createServer((req,res)=>{
 
         res.end(data);
 
-    });
+        });
+    }
+
+    if(req.url = "/message"){
+        res.end("ㅋㅋ");
+    }
+
+    
 
 });
 
