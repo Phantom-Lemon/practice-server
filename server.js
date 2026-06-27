@@ -5,6 +5,17 @@ const server = http.createServer((req,res)=>{
     
     
     fs.readFile("index.html", (err,data)=>{
+
+        if(err){
+
+            console.log(err);
+
+            res.statusCode = 500;
+            res.end("파일 없음");
+
+            return;
+        }
+
         res.setHeader(
             "Content-Type",
             "text/html; charset=utf-8"
