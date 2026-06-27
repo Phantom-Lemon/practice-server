@@ -27,11 +27,32 @@ const server = http.createServer((req,res)=>{
     }
 
     else if(req.url === "/message"){
-        res.setHeader(
-            "Content-Type",
-            "text/plain; charset=utf-8"
-        );
-        res.end("ㅋㅋ");
+
+        if(req.method === "POST"){
+            let body = "";
+
+            req.on("data",chunk=>{
+                body += chuck;
+            })
+
+            req.on("end",()=>{
+                res.setHeader(
+                    "Content-Type",
+                    "text/plain; charset=utf-8"
+                );
+                res.end("데이터 보내준거 받앗습니당");
+            });
+            
+        }
+
+        if(req.method === "GET"){
+            res.setHeader(
+                "Content-Type",
+                "text/plain; charset=utf-8"
+            );
+            res.end("겟 요청을 왜하노ㅋㅋ");    
+        }
+        
     }
 
     else if(req.url === "/time"){

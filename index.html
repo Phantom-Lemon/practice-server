@@ -9,25 +9,43 @@
     <p>
         Node.js가 HTML을 보내고 있습니다.
     </p>
-    <button id="button">서버에 요청</button>
-    <button id="button2">시간 요청</button>
+    <input id="input">
+    <button id="send_btn">보내기(post요청)</button>
+    <button id="get_btn">get 요청</button>
+    <button id="time_get_btn">시간 요청</button>
     <p id="result"></p>
 </body>
 <script>
-    const $btn = document.querySelector("#button");
-    const $btn2 = document.querySelector("#button2");
+    const $send_btn = document.querySelector("#send_btn");
+    const $get_btn = document.querySelector("#get_btn");
+    const $time_get_btn = document.querySelector("#time_get_btn");
+
     const $result = document.querySelector("#result");
+    const $input = document.querySelector("#input");
+
 
     const url = "https://practice-server-adky.onrender.com/"
 
-    $btn.addEventListener("click", ()=>{
-        fetch(url + "message")
+    $send_btn.addEventListener("click", ()=>{
+        fetch(url + "message",{
+            method : "POST",
+            body : $input.value
+        })
         .then(response => response.text())
         .then(text =>{
             $result.textContent = text;
         });
     });
-    $btn2.addEventListener("click", ()=>{
+    $get_btn.addEventListener("click", ()=>{
+        fetch(url + "message",{
+            method : "GET"
+        })
+        .then(response => response.text())
+        .then(text =>{
+            $result.textContent = text;
+        });
+    });
+    $time_get_btn.addEventListener("click", ()=>{
         fetch(url + "time")
         .then(response => response.text())
         .then(text =>{
